@@ -8,94 +8,120 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background: #000;
-            color: #fff;
+            background: radial-gradient(circle at top, #12223d 0%, #101827 40%, #0b111f 100%);
+            color: #f5f7ff;
             margin: 0;
             padding: 0;
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            overflow: auto;
+            overflow: hidden;
         }
         .slide {
             display: none;
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            padding: 50px;
+            inset: 0;
+            padding: 60px 30px;
             box-sizing: border-box;
             text-align: center;
-            background: linear-gradient(135deg, #f4a261 0%, #e76f51 50%, #264653 100%);
+            background: rgba(7, 21, 44, 0.88);
+            backdrop-filter: blur(18px);
             opacity: 0;
-            transition: opacity 0.5s ease;
+            transition: opacity 0.45s ease, transform 0.45s ease;
             overflow-y: auto;
             overflow-x: hidden;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
+            gap: 20px;
         }
         .slide.active {
             display: flex;
             opacity: 1;
+            transform: translateY(0);
+        }
+        .slide:not(.active) {
+            transform: translateY(20px);
         }
         h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
+            font-size: clamp(2.4rem, 4vw, 3.5rem);
+            margin-bottom: 16px;
+            letter-spacing: 0.02em;
+            text-shadow: 0 12px 20px rgba(0, 0, 0, 0.35);
         }
         h2 {
-            font-size: 2em;
-            margin-bottom: 20px;
+            font-size: clamp(1.8rem, 3vw, 2.6rem);
+            margin-bottom: 18px;
+            text-shadow: 0 10px 18px rgba(0, 0, 0, 0.28);
         }
         p {
-            font-size: 1.2em;
-            line-height: 1.6;
+            font-size: 1.1rem;
+            line-height: 1.8;
             max-width: 900px;
+            margin: 0 auto;
+            color: #e8ecff;
         }
         img {
             display: block;
-            max-width: 100%;
-            max-height: calc(100vh - 240px);
-            width: auto;
-            height: auto;
-            object-fit: contain;
-            border-radius: 10px;
-            margin: 20px auto;
+            width: min(100%, 860px);
+            max-height: 58vh;
+            object-fit: cover;
+            border-radius: 22px;
+            margin: 18px auto;
+            box-shadow: 0 30px 55px rgba(0, 0, 0, 0.38);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.03);
         }
         .slide > div {
             width: 100%;
             max-width: 1100px;
         }
         .slide > div img {
-            max-height: 380px;
+            max-height: 420px;
+        }
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+            width: 100%;
+            justify-items: center;
+            align-items: start;
+        }
+        .image-grid img {
+            width: 100%;
+            max-width: 320px;
         }
         .nav {
             position: absolute;
-            bottom: 20px;
+            bottom: 24px;
             left: 50%;
             transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
         }
         button {
-            background: #012169;
+            background: linear-gradient(135deg, #1d5bff 0%, #6b3cff 100%);
             color: white;
             border: none;
-            padding: 10px 20px;
-            margin: 0 10px;
-            border-radius: 25px;
+            padding: 12px 24px;
+            margin: 0;
+            border-radius: 999px;
             cursor: pointer;
-            font-size: 16px;
-            transition: background 0.3s ease;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 12px 30px rgba(15, 37, 90, 0.35);
         }
-        button:hover {
-            background: #C8102E;
+        button:hover:not(:disabled) {
+            transform: translateY(-1px);
+            filter: brightness(1.05);
         }
         button:disabled {
-            background: #ccc;
+            background: rgba(160, 160, 160, 0.7);
             cursor: not-allowed;
+            box-shadow: none;
         }
     </style>
 </head>
@@ -107,20 +133,20 @@
     <div class="slide" id="slide2">
         <h2>Що таке Австралія?</h2>
         <p>Австралія - це материк і країна в Південній півкулі. Вона відома своїми унікальними тваринами та красивою природою.</p>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/d/da/Australia_with_AAT_%28orthographic_projection%29.svg" alt="Карта Австралії" loading="lazy">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Australia_with_AAT_%28orthographic_projection%29.svg/960px-Australia_with_AAT_%28orthographic_projection%29.svg.png" alt="Карта Австралії" loading="lazy">
     </div>
     <div class="slide" id="slide3">
         <h2>Географія</h2>
         <p>Австралія - найменший материк, але найбільший острів. Тут є пустелі, ліси та пляжі. Столиця - Канберра.</p>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Uluru%2C_helicopter_view.jpg" alt="Улуру" loading="lazy">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Uluru%2C_helicopter_view.jpg/960px-Uluru%2C_helicopter_view.jpg" alt="Улуру" loading="lazy">
     </div>
     <div class="slide" id="slide4">
         <h2>Тварини Австралії</h2>
         <p>Тут живуть кенгуру, коали, какаду та багато інших унікальних тварин. Багато з них можна знайти тільки тут!</p>
         <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px;">
             <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Koala_climbing_tree.jpg" alt="Коала" style="width: 30%;" loading="lazy">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Macropus_giganteus_grazing_with_juvenile.jpg" alt="Кенгуру" style="width: 30%;" loading="lazy">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Sulphur-crested_cockatoo_Hornsby_007.jpg" alt="Какаду" style="width: 30%;" loading="lazy">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Macropus_giganteus_grazing_with_juvenile.jpg/960px-Macropus_giganteus_grazing_with_juvenile.jpg" alt="Кенгуру" style="width: 30%;" loading="lazy">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Sulphur-crested_cockatoo_Hornsby_007.jpg/960px-Sulphur-crested_cockatoo_Hornsby_007.jpg" alt="Какаду" style="width: 30%;" loading="lazy">
         </div>
     </div>
     <div class="slide" id="slide5">
@@ -132,11 +158,11 @@
         <h2>Цікаві факти</h2>
         <div style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
             <p>- Австралія має більше видів змій, ніж будь-яка інша країна.</p>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/0/01/Oxyuranus_scutellatus_first_milked_specimen_MV_1.jpg" alt="Змія" style="width: 40%;" loading="lazy">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Oxyuranus_scutellatus_first_milked_specimen_MV_1.jpg/960px-Oxyuranus_scutellatus_first_milked_specimen_MV_1.jpg" alt="Змія" style="width: 40%;" loading="lazy">
             <p>- Тут є Великий Бар'єрний риф - найбільший кораловий риф у світі.</p>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/1/12/Aerial_View_of_Great_Barrier_Reef_%28Ank_Kumar%29_02.jpg" alt="Великий Бар'єрний риф" style="width: 40%;" loading="lazy">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Aerial_View_of_Great_Barrier_Reef_%28Ank_Kumar%29_02.jpg/960px-Aerial_View_of_Great_Barrier_Reef_%28Ank_Kumar%29_02.jpg" alt="Великий Бар'єрний риф" style="width: 40%;" loading="lazy">
             <p>- Австралійці люблять спорт, особливо крикет та австралійський футбол.</p>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/1/1d/Cricket_ball_G%26M.jpg" alt="Крикет" style="width: 40%;" loading="lazy">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Cricket_ball_G%26M.jpg/960px-Cricket_ball_G%26M.jpg" alt="Крикет" style="width: 40%;" loading="lazy">
         </div>
     </div>
     <div class="nav">
